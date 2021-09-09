@@ -15,14 +15,17 @@ export const getCinemaMovies = async (page) => {
 	return await get(`/movie/now_playing?region=se&page=${page}`)
 }
 
-export const getPopularMovies = async (page) => {
-	return await get(`/trending/movie/week?region=se&page=${page}`)
+export const getPopularMovies = async (timeWindow, page) => {
+	return await get(`/trending/movie/${timeWindow}?region=se&page=${page}`)
 }
 
 export const getGenres = async () => {
 	return await get(`/genre/movie/list?language=en-US`)
 }
 
+export const getGenreMovies = async (genreId, page) => {
+	return await get(`/discover/movie?with_genres=${genreId}&page=${page}`)
+}
 
 export const getMovieDetails = async (id) => {
 	return await get(`movie/${id}?append_to_response=credits,similar_movies`)

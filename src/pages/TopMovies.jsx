@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getTopMovies } from '../services/API'
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
 import Pagination from '../components/Pagination'
+import MovieList from '../components/MovieList'
 import { useUrlSearchParams } from 'use-url-search-params'
 
 const TopMovies = () => {
@@ -18,8 +16,9 @@ const TopMovies = () => {
     }, [page])
 
     return (
-        <div>
+        <div className="page-container">
             <h1>Top movies page</h1>
+            <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
 
             {isLoading && (<p className="my-3">Loading movies...</p>)}
 
@@ -27,23 +26,11 @@ const TopMovies = () => {
 
             {data?.results && (
                 <>
-                    {data.results.map((result, i) => (
-                        <Container key={i}>
-                            <h2>{result.title}</h2>
-                            <span>{result.vote_average}/10 - {result.release_date}</span>                
-                            <p>{result.overview}</p>
-                            <Link to={`/movies/${result.id}`} >
-                                <Button>More info</Button>
-                            </Link>
-                            <div className="image-container">
-                                <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} />
-                            </div>
-                        </Container>
-                    ))}
+                    <MovieList data={data} />
+                    <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
                 </>
-            )}
+            )}            
             
-            <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
         </div>
     )
 }

@@ -11,7 +11,7 @@ const ActorDetails = () => {
     const { data, error, isError, isLoading } = useQuery(['actorDetails', id], () => getActorDetails(id))
 
     return (
-        <div>
+        <div className="page-container">
             <h1>This is the actor details page</h1>
             <BackButton />
 

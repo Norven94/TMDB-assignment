@@ -1,0 +1,29 @@
+@import "./variables.scss";
+
+.navbar {
+    background-color: black;
+
+    .navbar-brand {
+        color: $white;
+        transition: .3s;
+
+        &:hover {
+            color: $secondary;
+        }
+    }
+}
+.dropdown-item {
+    color: white;
+    margin: 4px;
+    transition: .3s;
+
+    &.active {
+        background-color: $primary ;
+        color: $black;   
+        border-radius: 4px; 
+    }
+    &:hover {
+        background-color: $secondary;
+        border-radius: 4px;
+    }
+}

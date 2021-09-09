@@ -12,7 +12,7 @@ const MovieDetails = () => {
     console.log(data)
 
     return (
-        <div>
+        <div className="page-container">
             <h1>This is the movie details page</h1>
             <BackButton />
 
@@ -25,12 +25,24 @@ const MovieDetails = () => {
                     <Container>
                         <h2>{data.title}</h2>
                         <span>{data.vote_average}/10 - {data.release_date}</span>                
-                        <p>{data.overview}</p>
+                        <p>{data.w}</p>
                         <div className="image-container">
                             <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
                         </div>
                     </Container>
                     <DetailsList details={data.credits.cast} type="actor" />
+
+                    <h2>Similar Movies</h2>
+                   {data.similar_movies.results.map((data, i) => (
+                       <Container>
+                        <h3>{data.title}</h3>
+                        <span>{data.vote_average}/10 - {data.release_date}</span>                
+                        <p>{data.w}</p>
+                        <div className="image-container">
+                            <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
+                        </div>
+                        </Container>
+                   ))}
                 </>
             )}
 

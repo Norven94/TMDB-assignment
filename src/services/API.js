@@ -12,7 +12,7 @@ export const getTopMovies = async (page) => {
 }
 
 export const getCinemaMovies = async (page) => {
-	return await get(`/movie/now_playing?region=se&page=${page}`)
+	return await get(`/movie/now_playing?page=${page}`)
 }
 
 export const getPopularMovies = async (timeWindow, page) => {
@@ -34,5 +34,12 @@ export const getMovieDetails = async (id) => {
 export const getActorDetails =  async (id) => {
 	return await get(`person/${id}?append_to_response=credits`)
 }
+
+export const searchForMovie = async (searchString, page) => {
+	if(searchString) {
+		return await get(`search/movie?page=${page}&query=${searchString}`)
+	}
+}
+
 
 

@@ -21,13 +21,14 @@ const Pagination = ({isPreviousData, totalPages, page, setPage}) => {
     return (
         <div className="pagination-container">
             <button
-                className="primary-btn"
+                className="primary-btn back-btn"
                 onClick={() => setPage(currentPage => Math.max(currentPage - 1, 1))}
                 disabled={page === 1}
             >
                 Previous Page
             </button>
 
+            <div className="pages-container">
             {pages.map((pageNum, i) => {
                 if (pageNum === page) {
                     return ( 
@@ -51,9 +52,10 @@ const Pagination = ({isPreviousData, totalPages, page, setPage}) => {
                     )
                 }
             })}
+            </div>
 
             <button
-                className="primary-btn"
+                className="primary-btn next-btn"
                 onClick={() => {
                     if (!isPreviousData && page < totalPages) {
                         setPage(currentPage => Math.max(currentPage + 1))

@@ -7,7 +7,7 @@ import "../scss/navigation.scss";
 
 const Navigation = () => {
     return (
-        <Navbar expand="lg" className="navbar">
+        <Navbar variant="dark" expand="lg" className="navbar">
             <Container>
                 <Navbar.Brand>
                     <Link to="/" className="navbar-brand">Movie Library</Link>

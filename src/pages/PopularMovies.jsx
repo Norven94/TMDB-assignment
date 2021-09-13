@@ -18,12 +18,15 @@ const PopularMovies = () => {
     return (
         <div className="page-container">
             <h1>Popular movies page</h1>
-            <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
 
-            <select name="time" onChange={(e) => setTime(e.target.value)}>
-                <option value="week">Week</option>
-                <option value="day">Day</option>
-            </select>
+            <div className="options-container">
+                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+            
+                <select name="time" onChange={(e) => setTime(e.target.value)}>
+                    <option value="week">Week</option>
+                    <option value="day">Day</option>
+                </select>
+            </div>
 
             {isLoading && (<p className="my-3">Loading movies...</p>)}
 
@@ -32,7 +35,9 @@ const PopularMovies = () => {
             {data?.results && (
                 <>
                     <MovieList data={data} />
-                    <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                    <div className="options-container">
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                    </div>
                 </> 
             )}        
         </div>

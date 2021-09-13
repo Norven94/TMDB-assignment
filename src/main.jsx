@@ -11,6 +11,7 @@ const queryClient = new QueryClient({
 		queries: {
 			refetchOnWindowFocus: false,
 			staleTime: 1000 * 60 * 60, // Fetch new data after 1h 
+      casheTime: 1000 * 60 * 60 * 4, //4h
 		},
 	},
 })

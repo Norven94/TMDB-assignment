@@ -19,9 +19,11 @@ const FilterMovies = () => {
     return (
         <div className="page-container">
             <h1>This is the filter movies page</h1>
-            <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+            <div className="options-container">
+                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
 
-            <Filter setGenre={setGenre} />
+                <Filter setGenre={setGenre} />
+            </div>
 
             {isLoading && (<p className="my-3">Loading movies...</p>)}
 
@@ -30,7 +32,9 @@ const FilterMovies = () => {
             {data?.results && (
                 <>
                     <MovieList data={data} />
-                    <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                    <div className="options-container">
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                    </div>
                 </>
             )}
         </div>

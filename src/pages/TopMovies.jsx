@@ -9,7 +9,6 @@ const TopMovies = () => {
     const [pageParams, setPageParams] = useUrlSearchParams({ page: 1}, {page: Number})
     const [page, setPage] = useState(pageParams.page)
     const { data, error, isError, isLoading, isPreviousData } = useQuery(['topMovies', page], () => getTopMovies(page))
-    console.log(data)
 
     useEffect(() => {
         setPageParams({ ...pageParams, page})
@@ -18,7 +17,9 @@ const TopMovies = () => {
     return (
         <div className="page-container">
             <h1>Top movies page</h1>
-            <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+            <div className="options-container">
+                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+            </div>
 
             {isLoading && (<p className="my-3">Loading movies...</p>)}
 
@@ -27,7 +28,9 @@ const TopMovies = () => {
             {data?.results && (
                 <>
                     <MovieList data={data} />
-                    <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                    <div className="options-container">
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                    </div>
                 </>
             )}            
             

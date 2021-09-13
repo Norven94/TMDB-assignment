@@ -1,35 +1,38 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
+import { useHistory } from 'react-router'
 
 const DetailsList = ({details, type}) => {
-    console.log(details)
+    const history = useHistory()
 
     return (
-        <ul>
+        <ul className="details-container">
             {details.map((data, i) => {
-                    //Limit actors/movies to the top 10 most popular
-                    if (i < 10) {
-                        return (
-                            <li key={i} >
-                                {data.title ? (
+                    //Limit actors/movies to the top 9 most popular
+                    //If there is no poster or profile image then dont render it
+                    if (i < 9 && (data.poster_path || data.profile_path)) {
+                        if (data.title) {
+                            return (
+                                <li className="movie-info-container" key={i} onClick={() => history.push(`/${type}/${data.id}`)} >                                       
+                                    <div className="image-container">
+                                        <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
+                                    </div>
+                                    <button className="movie-info-btn">i</button>
+                                </li>
+                            )
+                        } else {
+                            return (
+                                <li className="actor-info-container" key={i} onClick={() => history.push(`/${type}/${data.id}`)} >
                                     <>
-                                        <p>{data.title}</p>
                                         <div className="image-container">
-                                            <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
+                                                <img src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} />
                                         </div>
+                                        <span>{data.name} acting as {data.character}</span>                                        
+                                        <button className="info-btn">i</button>
                                     </>
-                                ) : (
-                                    <span>{data.name} acting as {data.character}</span>
-                                )}
-                                
-                                <Link to={`/${type}/${data.id}`} >
-                                    <Button>More info</Button>
-                                </Link>
-                            </li>
-                        )
-                    }
-                    
+                                </li> 
+                            )
+                        }
+                    }         
                 })}
         </ul>
     )

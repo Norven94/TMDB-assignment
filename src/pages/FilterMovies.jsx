@@ -4,6 +4,7 @@ import { getGenreMovies } from '../services/API'
 import Pagination from '../components/Pagination'
 import MovieList from '../components/MovieList'
 import Filter from '../components/Filter'
+import PreviousMovies from '../components/previousMovies'
 import { useUrlSearchParams } from 'use-url-search-params'
 
 const FilterMovies = () => {
@@ -18,7 +19,8 @@ const FilterMovies = () => {
 
     return (
         <div className="page-container">
-            <h1>This is the filter movies page</h1>
+            <h1>The Movie Library</h1>
+            <p>Use the filter to find your movie based on the genre</p>
             <div className="options-container">
                 <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
 
@@ -37,6 +39,8 @@ const FilterMovies = () => {
                     </div>
                 </>
             )}
+
+            <PreviousMovies />
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { useQuery } from 'react-query'
 import { getTopMovies } from '../services/API'
 import Pagination from '../components/Pagination'
 import MovieList from '../components/MovieList'
+import PreviousMovies from '../components/previousMovies'
 import { useUrlSearchParams } from 'use-url-search-params'
 
 const TopMovies = () => {
@@ -16,7 +17,8 @@ const TopMovies = () => {
 
     return (
         <div className="page-container">
-            <h1>Top movies page</h1>
+            <h1>The Movie Library</h1>
+            <p>Find the top ranked movies here!</p>
             <div className="options-container">
                 <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
             </div>
@@ -32,8 +34,9 @@ const TopMovies = () => {
                         <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
                     </div>
                 </>
-            )}            
-            
+            )}  
+
+            <PreviousMovies />             
         </div>
     )
 }

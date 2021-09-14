@@ -43,9 +43,10 @@ const MovieDetails = () => {
                     </div>
 
                     <div className="details-image-container">
-                        <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} />
+                        <img src={data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : "https://freepikpsd.com/media/2019/10/no-image-available-icon-png-8-Transparent-Images.png"} />
                     </div>
                     <div className="movie-details">
+                        {data.poster_path ? "" : <h3>{data.title}</h3>}   
                         <span>{data.vote_average}/10 - {data.release_date}</span>
                         <p>{data.overview}</p>
                     </div>

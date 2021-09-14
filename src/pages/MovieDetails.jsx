@@ -42,17 +42,21 @@ const MovieDetails = () => {
                         <BackButton />
                     </div>
 
-                    <div className="details-image-container">
-                        <img src={data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : "https://freepikpsd.com/media/2019/10/no-image-available-icon-png-8-Transparent-Images.png"} />
-                    </div>
-                    <div className="movie-details">
-                        {data.poster_path ? "" : <h3>{data.title}</h3>}   
-                        <span>{data.vote_average}/10 - {data.release_date}</span>
-                        <p>{data.overview}</p>
+                    <div className="movie-card">
+                        <div className="details-image-container">
+                            <img src={data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : "https://freepikpsd.com/media/2019/10/no-image-available-icon-png-8-Transparent-Images.png"} />
+                        </div>
+                        <div className="movie-details">
+                            {data.poster_path ? "" : <h3>{data.title}</h3>}   
+                            <span>{data.vote_average}/10 - {data.release_date}</span>
+                            <p>{data.overview}</p>
+                        </div>
                     </div>
 
-                    <h2>Actors of the movie</h2>
-                    <DetailsList details={data.credits.cast} type="actor" />
+                    <div>
+                        <h2>Actors of the movie</h2>
+                        <DetailsList details={data.credits.cast} type="actor" />
+                    </div>
 
                     <h2>Similar Movies</h2>
                     <div className="details-container">

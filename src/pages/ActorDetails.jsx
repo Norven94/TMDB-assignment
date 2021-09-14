@@ -21,16 +21,20 @@ const ActorDetails = () => {
                         <h1>{data.name}</h1>
                         <BackButton />
                     </div>
-                    <div className="details-image-container">
-                        <img src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} />
-                    </div>
-                    <div className="actor-details">
-                        <span>Born {data.birthday} in {data.place_of_birth}</span>                
-                        <p>{data.biography}</p>
+                    <div className="actor-card">
+                        <div className="details-image-container">
+                            <img src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} />
+                        </div>
+                        <div className="actor-details">
+                            <span>Born {data.birthday} in {data.place_of_birth}</span>                
+                            <p>{data.biography}</p>
+                        </div>
                     </div>
 
-                    <h2>Movies the actor have been a part of</h2>
-                    <DetailsList details={data.credits.cast.sort((a, b) => b.popularity - a.popularity)} type="movies" />
+                    <div>
+                        <h2>Movies the actor have been a part of</h2>
+                        <DetailsList details={data.credits.cast.sort((a, b) => b.popularity - a.popularity)} type="movies" />
+                    </div>
                 </div>
             )}
         </div>

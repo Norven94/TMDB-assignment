@@ -26,10 +26,11 @@ const HomePage = () => {
 
     return (
         <div className="page-container">
-            <h1>This is the home page</h1>
-            <form onSubmit={submitSearch}>
+            <h1>The Movie Library</h1>
+            <p>Please feel free to use the movie library to search for your favorite movies</p>
+            <form onSubmit={submitSearch} className="search-container">
                 <input type="text" defaultValue={search} placeholder="Search for a movie..." ref={inputSearch} />
-                <button>Search</button>
+                <button className="btn search-btn">Search</button>
             </form>
             {isLoading && (<p className="my-3">Loading movies...</p>)}
 

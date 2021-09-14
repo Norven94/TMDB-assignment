@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Container from 'react-bootstrap/Container'
+import { useHistory } from 'react-router'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
 
 const MovieList = ({data}) => {
+    const history = useHistory()
+
     return (
         <Row className="movie-list-container">
             {data.results.map((result, i) => (
                 <Col md={4} sm={3} key={i}>
-                    <div className="movie-card">
+                    <div className="movie-card" onClick={() => history.push(`/movies/${result.id}`)}>
                         <div className="image-container">
                             <img src={result.poster_path ? `https://image.tmdb.org/t/p/w500${result.poster_path}` : "https://freepikpsd.com/media/2019/10/no-image-available-icon-png-8-Transparent-Images.png"} alt={`Image of ${result.title}`} />
                         </div>

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { getCinemaMovies } from '../services/API'
 import Pagination from '../components/Pagination'
 import MovieList from '../components/MovieList'
-import PreviousMovies from '../components/previousMovies'
+import PreviousMovies from '../components/PreviousMovies'
 import { useUrlSearchParams } from 'use-url-search-params'
 
 const CinemaMovies = () => {

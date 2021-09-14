@@ -4,7 +4,7 @@ import { getGenreMovies } from '../services/API'
 import Pagination from '../components/Pagination'
 import MovieList from '../components/MovieList'
 import Filter from '../components/Filter'
-import PreviousMovies from '../components/previousMovies'
+import PreviousMovies from '../components/PreviousMovies'
 import { useUrlSearchParams } from 'use-url-search-params'
 
 const FilterMovies = () => {

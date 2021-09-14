@@ -2,7 +2,6 @@ import React from 'react'
 import { useParams } from 'react-router'
 import { useQuery } from 'react-query'
 import { getActorDetails } from '../services/API'
-import Container from 'react-bootstrap/Container'
 import BackButton from '../components/BackButton'
 import DetailsList from '../components/DetailsList'
 

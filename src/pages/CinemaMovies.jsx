@@ -9,7 +9,7 @@ import { useUrlSearchParams } from 'use-url-search-params'
 const CinemaMovies = () => {
     const [pageParams, setPageParams] = useUrlSearchParams({ page: 1}, {page: Number})
     const [page, setPage] = useState(pageParams.page)
-    const { data, error, isError, isLoading, isPreviousData } = useQuery(['cinemaMovies', page], () => getCinemaMovies(page))
+    const { data, error, isError, isLoading, isPreviousData } = useQuery(['cinemaMovies', pageParams.page], () => getCinemaMovies(pageParams.page))
     console.log(data)
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const CinemaMovies = () => {
             <p>Find some new movies for the cinemas out there right now!</p>
             
             <div className="options-container">
-                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={pageParams.page} setPage={setPage} />
             </div>
 
             {isLoading && (<p className="my-3">Loading movies...</p>)}
@@ -33,7 +33,7 @@ const CinemaMovies = () => {
                 <>
                     <MovieList data={data} />
                     <div className="options-container">
-                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={pageParams.page} setPage={setPage} />
                     </div>
                 </>
             )}         

@@ -10,7 +10,7 @@ const PopularMovies = () => {
     const [pageParams, setPageParams] = useUrlSearchParams({ page: 1}, {page: Number})
     const [page, setPage] = useState(pageParams.page)
     const [time, setTime] = useState("week")
-    const { data, error, isError, isLoading, isPreviousData } = useQuery(['popularMovies', time, page], () => getPopularMovies(time, page))
+    const { data, error, isError, isLoading, isPreviousData } = useQuery(['popularMovies', time, pageParams.page], () => getPopularMovies(time, pageParams.page))
 
     useEffect(() => {
         setPageParams({ ...pageParams, page})
@@ -22,7 +22,7 @@ const PopularMovies = () => {
             <p>Find the most popular movies of the day or of the week!</p>
 
             <div className="options-container">
-                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={pageParams.page} setPage={setPage} />
             
                 <select name="time" onChange={(e) => setTime(e.target.value)}>
                     <option value="week">Week</option>
@@ -38,7 +38,7 @@ const PopularMovies = () => {
                 <>
                     <MovieList data={data} />
                     <div className="options-container">
-                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={pageParams.page} setPage={setPage} />
                     </div>
                 </> 
             )}   

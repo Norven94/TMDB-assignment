@@ -11,7 +11,7 @@ const FilterMovies = () => {
     const [genre, setGenre] = useState(27)
     const [pageParams, setPageParams] = useUrlSearchParams({ page: 1}, {page: Number})
     const [page, setPage] = useState(pageParams.page)
-    const { data, error, isError, isLoading, isPreviousData } = useQuery(['genreMovies', genre, page], () => getGenreMovies(genre, page))  
+    const { data, error, isError, isLoading, isPreviousData } = useQuery(['genreMovies', genre, pageParams.page], () => getGenreMovies(genre, pageParams.page))  
 
     useEffect(() => {
         setPageParams({ ...pageParams, page})
@@ -22,7 +22,7 @@ const FilterMovies = () => {
             <h1>The Movie Library</h1>
             <p>Use the filter to find your movie based on the genre</p>
             <div className="options-container">
-                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={pageParams.page} setPage={setPage} />
 
                 <Filter setGenre={setGenre} />
             </div>
@@ -35,7 +35,7 @@ const FilterMovies = () => {
                 <>
                     <MovieList data={data} />
                     <div className="options-container">
-                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={pageParams.page} setPage={setPage} />
                     </div>
                 </>
             )}

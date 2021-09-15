@@ -8,15 +8,13 @@ import { useUrlSearchParams } from 'use-url-search-params'
 
 const HomePage = () => {
     const inputSearch = useRef()
-    const [searchParams, setSearchParams] = useUrlSearchParams({ search: "" }, { s: String })
-    const [pageParams, setPageParams] = useUrlSearchParams({ page: 1 }, { page: Number })
-    const [search, setSearch] = useState(searchParams.search)
-    const [page, setPage] = useState(pageParams.page)
-    const { data, error, isError, isLoading, isPreviousData } = useQuery(['searchMovies', search, page], () => searchForMovie(search, page))
+    const [params, setParams] = useUrlSearchParams({search: "", page: 1}, { s: String, page: Number})
+    const [search, setSearch] = useState(params.search)
+    const [page, setPage] = useState(params.page)
+    const { data, error, isError, isLoading, isPreviousData } = useQuery(['searchMovies', params.search, params.page], () => searchForMovie(params.search, params.page))
 
     useEffect(() => {
-        setPageParams({ ...pageParams, page })
-        setSearchParams({ ...searchParams, search })
+        setParams({...params, page, search})
     }, [page, search])
 
     const submitSearch = (e) => {
@@ -29,7 +27,7 @@ const HomePage = () => {
             <h1>The Movie Library</h1>
             <p>Please feel free to use the movie library to search for your favorite movies</p>
             <form onSubmit={submitSearch} className="search-container">
-                <input type="text" defaultValue={search} placeholder="Search for a movie..." ref={inputSearch} />
+                <input type="text" defaultValue={params.search} placeholder="Search for a movie..." ref={inputSearch} />
                 <button className="btn search-btn">Search</button>
             </form>
             {isLoading && (<p className="my-3">Loading movies...</p>)}
@@ -39,11 +37,11 @@ const HomePage = () => {
             {data?.results && data?.results.length > 0 ? (
                 <>
                     <div className="options-container">
-                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={params.page} setPage={setPage} />
                     </div>
                     <MovieList data={data} />
                     <div className="options-container">
-                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={params.page} setPage={setPage} />
                     </div>
                 </>
             ) : data?.results && search ? (

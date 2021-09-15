@@ -9,7 +9,7 @@ import { useUrlSearchParams } from 'use-url-search-params'
 const TopMovies = () => {
     const [pageParams, setPageParams] = useUrlSearchParams({ page: 1}, {page: Number})
     const [page, setPage] = useState(pageParams.page)
-    const { data, error, isError, isLoading, isPreviousData } = useQuery(['topMovies', page], () => getTopMovies(page))
+    const { data, error, isError, isLoading, isPreviousData } = useQuery(['topMovies', pageParams.page], () => getTopMovies(pageParams.page))
 
     useEffect(() => {
         setPageParams({ ...pageParams, page})
@@ -20,7 +20,7 @@ const TopMovies = () => {
             <h1>The Movie Library</h1>
             <p>Find the top ranked movies here!</p>
             <div className="options-container">
-                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={pageParams.page} setPage={setPage} />
             </div>
 
             {isLoading && (<p className="my-3">Loading movies...</p>)}
@@ -31,7 +31,7 @@ const TopMovies = () => {
                 <>
                     <MovieList data={data} />
                     <div className="options-container">
-                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={page} setPage={setPage} />
+                        <Pagination isPreviousData={isPreviousData} totalPages={data?.total_pages} page={pageParams.page} setPage={setPage} />
                     </div>
                 </>
             )}  
